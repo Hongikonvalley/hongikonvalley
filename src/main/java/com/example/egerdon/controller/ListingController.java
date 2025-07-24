@@ -3,14 +3,19 @@ package com.example.egerdon.controller;
 import com.example.egerdon.dto.CommonResponse;
 import com.example.egerdon.dto.listing.ListingSearchRequest;
 import com.example.egerdon.dto.listing.ListingSearchResponse;
+import com.example.egerdon.entity.Listing;
+import com.example.egerdon.repository.ListingRepository;
 import com.example.egerdon.service.ListingSearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 매물 관련 REST API 컨트롤러
@@ -22,6 +27,45 @@ import java.time.LocalDate;
 public class ListingController {
     
     private final ListingSearchService listingSearchService;
+    private final ListingRepository listingRepository;
+    
+    /**
+     * 디버깅용: 전체 매물 조회 API
+     */
+    @GetMapping("/debug/all")
+    public ResponseEntity<CommonResponse<Object>> getAllListingsForDebug() {
+        log.info("디버깅용 전체 매물 조회 API 호출");
+        
+        // 전체 매물 개수
+        long totalCount = listingRepository.count();
+        log.info("총 매물 개수: {}", totalCount);
+        
+        // contract_status별 개수
+        List<Object[]> statusCounts = listingRepository.countByContractStatus();
+        log.info("Contract Status별 개수:");
+        for (Object[] row : statusCounts) {
+            log.info("  - {}: {}건", row[0], row[1]);
+        }
+        
+        // 첫 5개 매물 조회
+        Page<Listing> listings = listingRepository.findAllListingsForDebug(PageRequest.of(0, 5));
+        log.info("첫 5개 매물 조회 결과: {}건", listings.getContent().size());
+        
+        for (Listing listing : listings.getContent()) {
+            log.info("매물 ID: {}, 제목: {}, Contract Status: {}, 보증금: {}", 
+                    listing.getId(), listing.getTitle(), listing.getContractStatus(), listing.getDeposit());
+        }
+        
+        return ResponseEntity.ok(CommonResponse.builder()
+                .statusCode(200)
+                .message("디버깅 정보 조회 완료")
+                .data(java.util.Map.of(
+                        "totalCount", totalCount,
+                        "statusCounts", statusCounts,
+                        "sampleListings", listings.getContent()
+                ))
+                .build());
+    }
     
     /**
      * 매물 검색 API

@@ -46,7 +46,8 @@ public class ListingSearchService {
         String neighborhood = preprocessNeighborhood(request.getNeighborhood());
         Integer maxBudget = request.getBudget();
         
-        log.debug("전처리된 검색 조건 - 동네: {}, 최대예산: {}만원", neighborhood, maxBudget);
+        log.info("🔍 검색 조건 상세 - 원본 동네: '{}', 전처리된 동네: '{}', 최대예산: {}만원", 
+                request.getNeighborhood(), neighborhood, maxBudget);
         
         // 2. 페이징 설정
         Pageable pageable = PageRequest.of(request.getPage(), request.getSize());

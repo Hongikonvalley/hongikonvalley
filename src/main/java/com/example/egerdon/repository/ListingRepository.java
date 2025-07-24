@@ -17,6 +17,18 @@ import java.time.LocalDate;
 public interface ListingRepository extends JpaRepository<Listing, Long> {
     
     /**
+     * 디버깅용: 모든 매물 조회 (조건 없음)
+     */
+    @Query("SELECT l FROM Listing l LEFT JOIN FETCH l.user ORDER BY l.createdAt DESC")
+    Page<Listing> findAllListingsForDebug(Pageable pageable);
+    
+    /**
+     * 디버깅용: contract_status별 매물 개수 조회
+     */
+    @Query("SELECT l.contractStatus, COUNT(l) FROM Listing l GROUP BY l.contractStatus")
+    java.util.List<Object[]> countByContractStatus();
+    
+    /**
      * 동네와 예산 범위로 매물 검색
      * 
      * @param neighborhood 동네명 (주소에 포함된 경우)
