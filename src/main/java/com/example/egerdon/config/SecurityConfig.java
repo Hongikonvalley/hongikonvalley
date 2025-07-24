@@ -118,9 +118,7 @@ public class SecurityConfig {
         // 허용할 Origin (프론트엔드 URL)
         configuration.setAllowedOriginPatterns(Arrays.asList(
             "http://localhost:3000",        // React 개발 서버
-            "http://localhost:8080",        // 현재 백엔드 (필요시)
-            "https://mutsamarket.store",    // 배포 도메인 (HTTPS)
-            "http://mutsamarket.store"      // 배포 도메인 (HTTP)
+            "http://localhost:8080"        // 현재 백엔드 (필요시)
         ));
         
         // 허용할 HTTP 메서드
