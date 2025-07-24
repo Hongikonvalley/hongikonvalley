@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - 홍이콘밸리</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .kakao-login-btn {
+            background: #FEE500;
+            color: #3C1E1E;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .kakao-login-btn:hover {
+            background: #F5DC00;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .kakao-icon {
+            width: 20px;
+            height: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover {
+            color: #333;
+        }
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>🏠 홍이콘밸리</h2>
+        <p class="subtitle">카카오 계정으로 간편하게 로그인하세요</p>
+        
+        <!-- 에러 메시지 표시 -->
+        <div th:if="${param.error}" class="error-message">
+            로그인 중 문제가 발생했습니다. 다시 시도해주세요.
+        </div>
+        
+        <!-- 카카오 로그인 버튼 -->
+        <a href="/oauth2/authorization/kakao" class="kakao-login-btn">
+            <svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3c5.799 0 10.5 3.664 10.5 8.185 0 4.52-4.701 8.184-10.5 8.184a13.5 13.5 0 0 1-1.67-.104l-4.108 2.961a.56.56 0 0 1-.884-.463l.405-4.176C2.45 15.647 1.5 12.989 1.5 11.185 1.5 6.665 6.201 3 12 3Z"/>
+            </svg>
+            카카오로 시작하기
+        </a>
+        
+        <a href="/" class="back-link">← 홈으로 돌아가기</a>
+    </div>
+</body>
+</html> 
