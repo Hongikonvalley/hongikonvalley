@@ -1,10 +1,12 @@
 package com.example.egerdon.enums;
 
 /**
- * 주요 방향(향)을 나타냅니다.
+ * 방음 수준을 나타냅니다.
  */
-public enum Orientation {
-    SOUTH, SOUTHEAST, SOUTHWEST,
-    NORTH, NORTHEAST, NORTHWEST,
-    EAST, WEST
+public enum SoundproofLevel {
+    VERY_POOR,   // 매우 나쁨
+    POOR,        // 나쁨
+    AVERAGE,     // 보통
+    GOOD,        // 좋음
+    EXCELLENT    // 매우 좋음
 }

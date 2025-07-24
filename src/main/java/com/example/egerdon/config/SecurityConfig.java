@@ -80,7 +80,8 @@ public class SecurityConfig {
                     "/",
                     "/login/**",
                     "/oauth2/**",
-                    "/error"
+                    "/error",
+                    "/api/v1/listings/**"   // 매물 검색 API 허용
                 ).permitAll()
                 
                 // 인증 필요 API - 모든 비즈니스 API는 인증 필요
@@ -120,7 +121,8 @@ public class SecurityConfig {
             "http://localhost:3000",        // React 개발 서버 (개발용)
             "http://localhost:8080",        // 로컬 백엔드 (개발용)
             "http://my-po.store",          // 프로덕션 백엔드
-            "https://my-po.store"          // 프로덕션 백엔드 (HTTPS)
+            "https://my-po.store",         // 프로덕션 백엔드 (HTTPS)
+            "https://front-end-roan-delta-78.vercel.app"  // Vercel 배포 프론트엔드
         ));
         
         // 허용할 HTTP 메서드
