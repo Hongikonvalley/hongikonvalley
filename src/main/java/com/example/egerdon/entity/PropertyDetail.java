@@ -12,6 +12,7 @@ import lombok.*;
  * 건물 구조, 층수, 면적, 준공일 등의 고정된 속성을 담당한다.
  */
 @Entity
+@Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,5 +39,4 @@ public class PropertyDetail {
     private LocalDate builtAt;
     private Short householdCount;
 }
-
 
