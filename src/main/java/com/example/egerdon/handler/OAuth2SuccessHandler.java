@@ -27,7 +27,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private final JwtUtil jwtUtil;
     
     // 프론트엔드 콜백 URL
-    private static final String FRONTEND_CALLBACK_URL = "http://localhost:3000/auth/callback";
+    private static final String FRONTEND_CALLBACK_URL = "https://front-end-roan-delta-78.vercel.app/auth/callback";
 
     @Override
     public void onAuthenticationSuccess(

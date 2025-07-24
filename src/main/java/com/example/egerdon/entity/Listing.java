@@ -26,6 +26,12 @@ public class Listing {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 100)
+    private String title; // 매물 제목
+    
+    @Column(length = 1000)
+    private String description; // 매물 소개
+
     private Integer deposit;
     private Integer monthlyRent;
     private Integer maintenanceFee;

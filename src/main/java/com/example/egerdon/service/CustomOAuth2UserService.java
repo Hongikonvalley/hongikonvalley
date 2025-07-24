@@ -1,6 +1,7 @@
 package com.example.egerdon.service;
 
 import com.example.egerdon.entity.User;
+import com.example.egerdon.enums.ListerType;
 import com.example.egerdon.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
