@@ -18,7 +18,7 @@ public class ListingSearchRequest {
     
     private String purpose; // 목적 (예: "학교", "직장")
     private String neighborhood; // 동네 (예: "상수동")
-    private String budget; // 예산 (예: "1억 2천만원")
+    private Integer budget; // 예산 (만원 단위, 예: 80)
     private LocalDate desiredMoveInDate; // 기간 - 입주 희망일 (yyyy-MM-dd 형식)
     
     @Builder.Default
