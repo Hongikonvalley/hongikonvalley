@@ -1,6 +1,7 @@
 package com.example.egerdon.controller;
 
 import com.example.egerdon.service.PrincipalDetails;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,5 +39,14 @@ public class AuthController {
             model.addAttribute("nickname", principalDetails.getNickname());
         }
         return "dashboard";
+    }
+
+    /**
+     * Favicon 요청 처리 (임시)
+     * 프론트엔드에서 favicon.ico 요청 시 404 에러 방지
+     */
+    @GetMapping("/favicon.ico")
+    public ResponseEntity<Void> favicon() {
+        return ResponseEntity.noContent().build();
     }
 }
