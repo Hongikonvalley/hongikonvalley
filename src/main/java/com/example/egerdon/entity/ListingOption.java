@@ -1,19 +1,42 @@
 package com.example.egerdon.entity;
 
-import com.example.egerdon.enums;
-
+import com.example.egerdon.enums.EntranceType;
+import com.example.egerdon.enums.HeatingType;
+import com.example.egerdon.enums.Orientation;
+import com.example.egerdon.enums.SoundproofLevel;
+import jakarta.persistence.*;
+import lombok.*;
 /**
  * 매물의 주거 편의 조건에 대한 서브 도메인.
  * 주차, 엘리베이터, 냉난방, 방음, 현관 유형 등 실거주와 밀접한 옵션을 관리한다.
  */
+@Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ListingOption {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long listingId;  // 해당 매물의 ID (FK)
-    private Boolean parkingAvailable;  // 주차 가능 여부
-    private Boolean hasElevator;  // 엘리베이터 유무
-    private enums.EntranceType entranceType;  // 현관 구조 (공동출입구, 복도형 등)
-    private enums.Orientation orientation;  // 주실 방향 (남향, 북향 등)
-    private enums.HeatingType heatingType;  // 냉난방 유형 (개별난방, 중앙난방 등)
-    private enums.SoundproofLevel soundproofLevel;  // 방음 수준 (우수, 일반, 불량)
+
+    @OneToOne
+    @JoinColumn(name = "listing_id")
+    private Listing listing;
+
+    private Boolean parkingAvailable;
+    private Boolean hasElevator;
+
+    @Enumerated(EnumType.STRING)
+    private EntranceType entranceType;
+
+    @Enumerated(EnumType.STRING)
+    private Orientation orientation;
+
+    @Enumerated(EnumType.STRING)
+    private HeatingType heatingType;
+
+    @Enumerated(EnumType.STRING)
+    private SoundproofLevel soundproofLevel;
 }
+
