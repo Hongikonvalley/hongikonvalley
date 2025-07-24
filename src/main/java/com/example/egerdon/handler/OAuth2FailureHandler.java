@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
 public class OAuth2FailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     // 프론트엔드 콜백 URL (에러용)
-    private static final String FRONTEND_CALLBACK_URL = "http://localhost:3000/auth/callback";
+    private static final String FRONTEND_CALLBACK_URL = "https://front-end-roan-delta-78.vercel.app/auth/callback";
 
     @Override
     public void onAuthenticationFailure(
